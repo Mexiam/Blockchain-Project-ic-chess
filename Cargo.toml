@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/ic-chess-backend"
+]
+resolver = "2"

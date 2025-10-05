@@ -1,0 +1,19 @@
+{
+  "canisters": {
+    "ic-chess-backend": {
+      "type": "rust",
+      "package": "ic-chess-backend",
+      "candid": "src/ic-chess-backend/ic-chess-backend.did",
+      "build": "cargo build --target wasm32-unknown-unknown --release -p ic-chess-backend",
+      "wasm": "target/wasm32-unknown-unknown/release/ic_chess_backend.wasm"
+    },
+    "ic-chess-frontend": {
+      "type": "assets",
+      "source": ["src/ic-chess-frontend/dist"],
+      "dependencies": ["ic-chess-backend"],
+      "candid": "src/ic-chess-frontend/empty.did"
+    }
+  },
+  "version": 1
+}
+

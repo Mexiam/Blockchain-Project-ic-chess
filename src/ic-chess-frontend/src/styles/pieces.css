@@ -1,0 +1,44 @@
+/* Board layering (safe defaults) */
+cg-container { position: relative; }
+cg-board     { position: relative; z-index: 1; }
+
+/* Pieces live inside shadow DOM; style via ::part(piece) */
+cg-auto-pieces::part(piece) {
+  visibility: visible !important;   /* override hidden inline style */
+  z-index: 5;
+  display: flex;                    /* center the glyph */
+  align-items: center;
+  justify-content: center;
+  width: 12.5%;
+  height: 12.5%;
+
+  /* Glyph look */
+  background: none !important;      /* ensure no broken bg-image */
+  color: #111;                      /* black pieces color */
+  font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", "DejaVu Sans", serif;
+  line-height: 1;
+  font-size: 56px;                  /* tuned for a 500×500 board */
+}
+
+/* White pieces: make them lighter so they pop on brown theme */
+cg-auto-pieces::part(piece).white {
+  color: #eee;
+  text-shadow:
+    0 0 2px #0006,
+    0 1px 0 #0004;
+}
+
+/* Map each role/color to a Unicode chess glyph */
+cg-auto-pieces::part(piece).white.pawn::before   { content: "♙"; }
+cg-auto-pieces::part(piece).white.knight::before { content: "♘"; }
+cg-auto-pieces::part(piece).white.bishop::before { content: "♗"; }
+cg-auto-pieces::part(piece).white.rook::before   { content: "♖"; }
+cg-auto-pieces::part(piece).white.queen::before  { content: "♕"; }
+cg-auto-pieces::part(piece).white.king::before   { content: "♔"; }
+
+cg-auto-pieces::part(piece).black.pawn::before   { content: "♟"; }
+cg-auto-pieces::part(piece).black.knight::before { content: "♞"; }
+cg-auto-pieces::part(piece).black.bishop::before { content: "♝"; }
+cg-auto-pieces::part(piece).black.rook::before   { content: "♜"; }
+cg-auto-pieces::part(piece).black.queen::before  { content: "♛"; }
+cg-auto-pieces::part(piece).black.king::before   { content: "♚"; }
